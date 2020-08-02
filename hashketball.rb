@@ -136,15 +136,14 @@ def num_points_scored(player_search)
   end
 end
 
-def player_helper
-  game_hash[:home][:players].merge(game_hash[:away][:players])
-end
-
-def get_team(team)
-  case team
-  when game_hash[:home][:team_name]
-    game_hash[:home]
-  when game_hash[:away][:team_name]
-    game_hash[:away]
+def shoe_size(name)
+  game_hash.each do |team, team_info|
+    team_info[:players].each do |player|
+      if player[:player_name] == name
+        return player[:shoe]
+      end
+    end
   end
 end
+
+
