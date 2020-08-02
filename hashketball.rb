@@ -126,4 +126,25 @@ def game_hash
   }
 end
 
-# Write code here
+def num_points_scored(player)
+  player_helper[player][:points]
+end
+
+def player_helper
+  game_hash[:home][:players].merge(game_hash[:away][:players])
+end
+
+def get_team(team)
+  case team
+  when game_hash[:home][:team_name]
+    game_hash[:home]
+  when game_hash[:away][:team_name]
+    game_hash[:away]
+  end
+end
+
+def player_numbers(team)
+  get_team(team)[:players].map do |key, value|
+    value[:number]
+  end
+end
